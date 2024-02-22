@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     padding: 16
   },
   view2: {
+    marginTop: 0,
     paddingTop: 0,
     paddingBottom: 12,
   },

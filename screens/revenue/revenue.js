@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,51 +10,59 @@ import {
   TouchableOpacity,
   FlatList
 } from 'react-native';
+import uuid from 'react-native-uuid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { color, menuItem } from '../../lib/lib';
-import moneyImg from '../../image/money.png';
 import ScreenTab from '../../components/screenTab';
-
-const data = [
-  { title: "Maaş 1", id: 1 }
-]
-
-function Section({children, title}) {
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionTitle,
-        ]}>
-        100 TL
-      </Text>
-    </View>
-  );
-}
+import LeftMoney from '../../components/leftMoney';
+import Section from '../../components/section';
 
 function Revenue({ navigation }) {
     const [openAdd, setOpenAdd] = useState(false);
+    const [data, setData] = useState([]);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
+
+    useEffect(() => {
+      const getMyObject = async () => {
+        try {
+          const jsonValue = await AsyncStorage.getItem('revenue');
+          let a = jsonValue != null ? JSON.parse(jsonValue) : [];
+          setData(a);
+        } catch(e) {
+          // read error
+          console.log("error", e)
+        }
+      }
+
+      getMyObject();
+    }, []);
 
     const handlePress = () => {
         setOpenAdd(!openAdd);
         if (openAdd && title && price) {
-            data.push({
-                title: title,
-                price: price,
-                id: data.length + 1
-            });
-            setTitle("");
-            setPrice("");
+          const item = {
+            title: title,
+            price: price,
+            id: uuid.v4()
+          };
+        
+          AsyncStorage.setItem('revenue', JSON.stringify([...data, item]));
+          data.push(item);
+          
+          setTitle("");
+          setPrice("");
         }
     }
+
+    const removeItem = useCallback((id) => {
+      console.log(id)
+      let filtered = data.filter(item => item.id !== id);
+      setData(filtered);
+
+      AsyncStorage.setItem('revenue', JSON.stringify(filtered));
+    })
   return (
     <SafeAreaView style={styles.backgroundStyle}>
         <ScreenTab navigation={navigation} title={menuItem[1].title}/>
@@ -84,16 +92,11 @@ function Revenue({ navigation }) {
             </TouchableOpacity>
             <ScrollView 
                 contentInsetAdjustmentBehavior="automatic">
-                {data.map(item => (<Section key={item.id} title={item.title} />))}
+                {data.map(item => (<Section key={item.id} item={item} removeItem={removeItem} />))}
             </ScrollView>
         </View>
 
-        <View
-          style={styles.bottomView}
-        >
-          <Text style={styles.text2}>Kalan Para</Text>
-          <Text style={styles.leftMoneyText}>250 TL</Text>
-        </View>
+        <LeftMoney />
     </SafeAreaView>
   );
 }
@@ -111,14 +114,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     paddingLeft: 8
-  },
-  bottomView: {
-    backgroundColor: color.white,
-    borderRadius: 20,
-    margin: 20,
-    marginTop: 0,
-    alignItems: "center",
-    padding: 8
   },
   view: {
     backgroundColor: color.white,
@@ -140,16 +135,6 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat-ExtraBold",
     color: color.main,
     paddingLeft: 4,
-  },
-  text2: {
-    fontSize: 16,
-    fontFamily: "Montserrat-ExtraBold",
-    color: color.main
-  },
-  leftMoneyText: {
-    fontSize: 28,
-    fontFamily: "Montserrat-ExtraBold",
-    color: color.main
   },
   sectionContainer: {
     marginTop: 12,

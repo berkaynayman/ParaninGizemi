@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -10,39 +10,54 @@ import {
 } from 'react-native';
 import ScreenTab from '../../components/screenTab';
 
+import uuid from 'react-native-uuid';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { color, menuItem } from '../../lib/lib';
-
-const data = [
-  { title: "Hedef 1", id: 1 }
-]
-
-function Section({children, title}) {
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-        ]}>
-        {title}
-      </Text>
-    </View>
-  );
-}
+import Section from '../../components/section';
 
 function Goal({ navigation }) {
     const [openAdd, setOpenAdd] = useState(false);
+    const [data, setData] = useState([]);
     const [title, setTitle] = useState("");
 
-    const handlePress = () => {
-        setOpenAdd(!openAdd);
-        if (openAdd && title) {
-            data.push({
-                title: title,
-                id: data.length + 1
-            });
-            setTitle("");
+
+    useEffect(() => {
+      const getMyObject = async () => {
+        try {
+          const jsonValue = await AsyncStorage.getItem('goal');
+          let a = jsonValue != null ? JSON.parse(jsonValue) : [];
+          setData(a);
+        } catch(e) {
+          // read error
+          console.log("error", e)
         }
+      }
+
+      getMyObject();
+    }, []);
+
+    const handlePress = () => {
+      setOpenAdd(!openAdd);
+      if (openAdd && title) {
+        const item = {
+          title: title,
+          id: uuid.v4()
+        };
+      
+        AsyncStorage.setItem('goal', JSON.stringify([...data, item]));
+        data.push(item);
+        
+        setTitle("");
+      }
     }
+
+    const removeItem = useCallback((id) => {
+      let filtered = data.filter(item => item.id !== id);
+      setData(filtered);
+
+      AsyncStorage.setItem('goal', JSON.stringify(filtered));
+    });
   return (
     <SafeAreaView style={styles.backgroundStyle}>
         <ScreenTab navigation={navigation} title={menuItem[4].title} />
@@ -64,7 +79,7 @@ function Goal({ navigation }) {
             </TouchableOpacity>
             <ScrollView 
                 contentInsetAdjustmentBehavior="automatic">
-                {data.map(item => (<Section key={item.id} title={item.title} />))}
+                {data.map(item => (<Section key={item.id} item={item} removeItem={removeItem} />))}
             </ScrollView>
         </View>
     </SafeAreaView>
