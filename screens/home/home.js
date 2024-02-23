@@ -17,9 +17,7 @@ function Section({navigation, title, route}) {
   return (
     <View style={styles.sectionContainer} onTouchEnd={() => navigation.navigate(route)}>
       <Text
-        style={[
-          styles.sectionTitle,
-        ]}>
+        style={styles.sectionTitle}>
         {title}
       </Text>
     </View>
@@ -42,7 +40,6 @@ function Home({ navigation }) {
           style={[styles.view, styles.view2]}
         >
           {menuItem.map((item, index) => (<Section key={index} title={item.title} route={item.route} navigation={navigation} />))}
-
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -63,12 +60,11 @@ const styles = StyleSheet.create({
   view2: {
     marginTop: 0,
     paddingTop: 0,
-    paddingBottom: 12,
   },
   image: {
-    resizeMode: 'center',
-    height: 200,
-    width: "auto",
+    resizeMode: 'contain',
+    height: 260,
+    width: "auto"
   },
   text: {
     fontSize: 40,

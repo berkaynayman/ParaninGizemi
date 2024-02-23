@@ -60,7 +60,7 @@ function Goal({ navigation }) {
     });
   return (
     <SafeAreaView style={styles.backgroundStyle}>
-        <ScreenTab navigation={navigation} title={menuItem[4].title} />
+        <ScreenTab navigation={navigation} title={menuItem[2].title} />
         <View
           style={[styles.view, styles.view2]}
         >   

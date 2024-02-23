@@ -2,16 +2,13 @@
 import React from 'react';
 import {
   SafeAreaView,
-  ScrollView,
   StyleSheet,
   Text,
   View,
-  Image
 } from 'react-native';
 
 import { color } from '../../lib/lib';
 import { menuItem } from '../../lib/lib';
-import moneyImg from '../../image/money.png';
 import ScreenTab from '../../components/screenTab';
 
 

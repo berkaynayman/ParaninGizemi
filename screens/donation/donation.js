@@ -65,7 +65,7 @@ function Donation({ navigation }) {
 
   return (
     <BaseScreen
-      screenName={menuItem[5].title}
+      screenName={menuItem[4].title}
       navigation={navigation}
       openAdd={openAdd}
       title={title}
