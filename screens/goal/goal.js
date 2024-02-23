@@ -52,8 +52,8 @@ function Goal({ navigation }) {
       }
     }
 
-    const removeItem = useCallback((id) => {
-      let filtered = data.filter(item => item.id !== id);
+    const removeItem = useCallback((_item) => {
+      let filtered = data.filter(item => item.id !== _item.id);
       setData(filtered);
 
       AsyncStorage.setItem('goal', JSON.stringify(filtered));

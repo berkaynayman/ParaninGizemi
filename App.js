@@ -34,7 +34,7 @@ const DATA = {
   ]
 }
 
-//AsyncStorage.removeItem('donation');
+//AsyncStorage.removeItem('leftMoney');
 
 function App() {
 
@@ -67,6 +67,14 @@ function App() {
         console.log("donationData", donationData)
         if (donationData) {
           AsyncStorage.setItem('donation', JSON.stringify(donationData));
+        }
+
+        const leftMoney = await AsyncStorage.getItem('leftMoney');
+        console.log("leftMoney", leftMoney)
+        if (leftMoney !== null) {
+          AsyncStorage.setItem('leftMoney', leftMoney);
+        } else {
+          AsyncStorage.setItem('leftMoney', "0");
         }
 
       } catch(e) {

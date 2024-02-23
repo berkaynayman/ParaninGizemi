@@ -1,13 +1,13 @@
 import { Text, View, StyleSheet } from "react-native"
 import { color } from "../lib/lib";
 
-const LeftMoney = () => {
+const LeftMoney = ({ total }) => {
     return (
         <View
           style={styles.bottomView}
         >
           <Text style={styles.text2}>Kalan Para</Text>
-          <Text style={styles.leftMoneyText}>250 TL</Text>
+          <Text style={styles.leftMoneyText}>{total} TL</Text>
         </View>
     )
 }

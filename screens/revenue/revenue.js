@@ -21,6 +21,7 @@ import Section from '../../components/section';
 function Revenue({ navigation }) {
     const [openAdd, setOpenAdd] = useState(false);
     const [data, setData] = useState([]);
+    const [leftMoney, setLeftMoney] = useState(0);
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
 
@@ -30,6 +31,9 @@ function Revenue({ navigation }) {
           const jsonValue = await AsyncStorage.getItem('revenue');
           let a = jsonValue != null ? JSON.parse(jsonValue) : [];
           setData(a);
+
+          const leftMoney = await AsyncStorage.getItem('leftMoney');
+          setLeftMoney(Number(leftMoney));
         } catch(e) {
           // read error
           console.log("error", e)
@@ -47,21 +51,26 @@ function Revenue({ navigation }) {
             price: price,
             id: uuid.v4()
           };
-        
           AsyncStorage.setItem('revenue', JSON.stringify([...data, item]));
           data.push(item);
           
+          const _leftMoney = leftMoney + Number(price);
+          setLeftMoney(_leftMoney);
+          AsyncStorage.setItem('leftMoney', _leftMoney.toString());
+
           setTitle("");
           setPrice("");
         }
     }
 
-    const removeItem = useCallback((id) => {
-      console.log(id)
-      let filtered = data.filter(item => item.id !== id);
+    const removeItem = useCallback((_item) => {
+      let filtered = data.filter(item => item.id !== _item.id);
       setData(filtered);
-
       AsyncStorage.setItem('revenue', JSON.stringify(filtered));
+
+      const _leftMoney = leftMoney - Number(_item.price);
+      setLeftMoney(_leftMoney);
+      AsyncStorage.setItem('leftMoney', _leftMoney.toString());
     })
   return (
     <SafeAreaView style={styles.backgroundStyle}>
@@ -96,7 +105,7 @@ function Revenue({ navigation }) {
             </ScrollView>
         </View>
 
-        <LeftMoney />
+        <LeftMoney total={leftMoney}/>
     </SafeAreaView>
   );
 }

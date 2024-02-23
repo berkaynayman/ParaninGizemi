@@ -17,7 +17,7 @@ function Section({item, removeItem}) {
             </Text>
           )}
         </View>
-        <View style={styles.removeButton} onTouchStart={() => removeItem(item.id)}>
+        <View style={styles.removeButton} onTouchStart={() => removeItem(item)}>
           <Image source={removeIcon} style={styles.image} />
         </View>
       </View>
