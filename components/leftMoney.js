@@ -19,10 +19,12 @@ const styles = StyleSheet.create({
         margin: 20,
         marginTop: 0,
         alignItems: "center",
-        padding: 8
+        display: "flex",
+        justifyContent: "center",
+        height: '9%'
     },
     text2: {
-        fontSize: 16,
+        fontSize: 20,
         fontFamily: "Montserrat-ExtraBold",
         color: color.main   
     },

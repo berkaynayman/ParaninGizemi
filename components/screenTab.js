@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         margin: 20,
+        height: 52
     },
     tabView: {
         backgroundColor: color.white,

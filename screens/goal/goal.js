@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   },
   view2: {
     marginTop: 0,
-    height: "66%"
+    height: "84%"
   },
   image: {
     resizeMode: 'cover',
