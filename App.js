@@ -10,29 +10,9 @@ import Goal from './screens/goal/goal';
 import Donation from './screens/donation/donation';
 import DailyInspirations from './screens/daily-inspirations/daily-inspirations';
 import Affirmations from './screens/affirmations/affirmations';
+import Info from './screens/info/info';
 
 const Stack = createNativeStackNavigator();
-
-const expenses = [
-  { title: "Kahvaltı", price: 80 },
-  { title: "Market", price: 350 }
-];
-
-const DATA = {
-  "expenses": [
-    { title: "Kahvaltı", price: 80 },
-    { title: "Market", price: 350 }
-  ],
-  "revenue": [
-    { title: "Maaş", price: 30000 }
-  ],
-  "donation": [
-    { title: "Kahve ısmarladım", price: 150 }
-  ],
-  "goal": [
-    { title: "Maaş" }
-  ]
-}
 
 //AsyncStorage.removeItem('leftMoney');
 
@@ -98,8 +78,7 @@ function App() {
         <Stack.Screen name="Revenue" component={Revenue} />
         <Stack.Screen name="Goal" component={Goal} />
         <Stack.Screen name="Donation" component={Donation} />
-
-
+        <Stack.Screen name="Info" component={Info} />
       </Stack.Navigator>
     </NavigationContainer>
   );
