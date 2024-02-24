@@ -12,6 +12,8 @@ import DailyInspirations from './screens/daily-inspirations/daily-inspirations';
 import Affirmations from './screens/affirmations/affirmations';
 import Info from './screens/info/info';
 
+import './localization/translations/i18n';
+
 const Stack = createNativeStackNavigator();
 
 //AsyncStorage.removeItem('leftMoney');
@@ -57,6 +59,14 @@ function App() {
           AsyncStorage.setItem('leftMoney', "0");
         }
 
+        const currency = await AsyncStorage.getItem('currency');
+        console.log("currency", currency)
+        if (currency !== null) {
+          AsyncStorage.setItem('currency', currency);
+        } else {
+          AsyncStorage.setItem('currency', "TL");
+        }
+
       } catch(e) {
         // read error
         console.log("error", e)
@@ -71,14 +81,14 @@ function App() {
       <Stack.Navigator initialRouteName="Home" screenOptions={{
         headerShown: false
       }}>
-        <Stack.Screen name="Home" component={Home} />
-        <Stack.Screen name="Expenses" component={Expenses} />
-        <Stack.Screen name="DailyInspirations" component={DailyInspirations} />
-        <Stack.Screen name="Affirmations" component={Affirmations} />
-        <Stack.Screen name="Revenue" component={Revenue} />
-        <Stack.Screen name="Goal" component={Goal} />
-        <Stack.Screen name="Donation" component={Donation} />
-        <Stack.Screen name="Info" component={Info} />
+          <Stack.Screen name="Home" component={Home} />
+          <Stack.Screen name="Expenses" component={Expenses} />
+          <Stack.Screen name="DailyInspirations" component={DailyInspirations} />
+          <Stack.Screen name="Affirmations" component={Affirmations} />
+          <Stack.Screen name="Revenue" component={Revenue} />
+          <Stack.Screen name="Goal" component={Goal} />
+          <Stack.Screen name="Donation" component={Donation} />
+          <Stack.Screen name="Info" component={Info} />
       </Stack.Navigator>
     </NavigationContainer>
   );

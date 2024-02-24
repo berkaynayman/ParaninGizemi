@@ -3,22 +3,24 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   View,
   TextInput,
-  TouchableOpacity,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import ScreenTab from '../../components/screenTab';
 import Section from '../../components/section';
 import LeftMoney from '../../components/leftMoney';
 
 import { color } from '../../lib/lib';
+import AddButton from '../../components/addButton';
 
 function BaseScreen({
     screenName, navigation, openAdd,
     title, setTitle, price, setPrice,
     handlePress, data, removeItem, leftMoney
 }) {
+  const { t } = useTranslation();
+
   return (
     <SafeAreaView style={styles.backgroundStyle}>
         <ScreenTab navigation={navigation} title={screenName}/>
@@ -29,22 +31,22 @@ function BaseScreen({
                 <>
                     <TextInput
                         style={styles.input}
-                        placeholder="Başlık"
+                        placeholderTextColor={color.main}
+                        placeholder={t('screens.base.title')}
                         onChangeText={setTitle}
                         value={title}
                     />
                     <TextInput
                         style={[styles.input, styles.input1]}
+                        placeholderTextColor={color.main}
                         onChangeText={setPrice}
                         value={price}
-                        placeholder="Fiyat"
+                        placeholder={t('screens.base.price')}
                         keyboardType="numeric"
                     />
                 </>
             )}
-            <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
-                <Text style={styles.buttonText}>EKLE</Text>
-            </TouchableOpacity>
+            <AddButton handlePress={handlePress} />
             <ScrollView 
                 contentInsetAdjustmentBehavior="automatic">
                 {data &&
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     fontFamily: "Montserrat-Bold",
+    textTransform: "uppercase"
   },
   input: {
     padding: 8,
@@ -94,8 +97,8 @@ const styles = StyleSheet.create({
     borderColor: color.main,
     fontSize: 20,
     fontFamily: "Montserrat-Bold",
-    color: color.main,
-    backgroundColor: color.greey,
+    color: color.main
+
   },
   input1: {
     marginBottom: 8

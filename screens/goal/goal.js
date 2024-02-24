@@ -3,11 +3,11 @@ import {
   SafeAreaView,
   ScrollView,
   StyleSheet,
-  Text,
   View,
   TextInput,
-  TouchableOpacity
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
+
 import ScreenTab from '../../components/screenTab';
 
 import uuid from 'react-native-uuid';
@@ -15,8 +15,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { color, menuItem } from '../../lib/lib';
 import Section from '../../components/section';
+import AddButton from '../../components/addButton';
 
 function Goal({ navigation }) {
+    const { t } = useTranslation();
     const [openAdd, setOpenAdd] = useState(false);
     const [data, setData] = useState([]);
     const [title, setTitle] = useState("");
@@ -45,8 +47,8 @@ function Goal({ navigation }) {
           id: uuid.v4()
         };
       
-        AsyncStorage.setItem('goal', JSON.stringify([...data, item]));
-        data.push(item);
+        AsyncStorage.setItem('goal', JSON.stringify([item, ...data]));
+        data.unshift(item);
         
         setTitle("");
       }
@@ -68,15 +70,14 @@ function Goal({ navigation }) {
                 <>
                     <TextInput
                         style={styles.input}
-                        placeholder="Hedef"
+                        placeholderTextColor={color.main}
+                        placeholder={t('screens.goal.goal')}
                         onChangeText={setTitle}
                         value={title}
                     />
                 </>
             )}
-            <TouchableOpacity style={styles.button} onPress={() => handlePress()}>
-                <Text style={styles.buttonText}>EKLE</Text>
-            </TouchableOpacity>
+            <AddButton handlePress={handlePress} />
             <ScrollView 
                 contentInsetAdjustmentBehavior="automatic">
                 {data.map(item => (<Section key={item.id} item={item} removeItem={removeItem} />))}
@@ -183,8 +184,7 @@ const styles = StyleSheet.create({
     borderColor: color.main,
     fontSize: 20,
     fontFamily: "Montserrat-Bold",
-    color: color.main,
-    backgroundColor: "#E9E8EB",
+    color: color.main
   }
 });
 

@@ -10,6 +10,7 @@ function Donation({ navigation }) {
     const [openAdd, setOpenAdd] = useState(false);
     const [data, setData] = useState([]);
     const [leftMoney, setLeftMoney] = useState(0);
+    const [currency, setCurrency] = useState("");
     const [title, setTitle] = useState("");
     const [price, setPrice] = useState("");
 
@@ -41,8 +42,8 @@ function Donation({ navigation }) {
             id: uuid.v4()
           };
         
-          AsyncStorage.setItem('donation', JSON.stringify([...data, item]));
-          setData([...data, item]);
+          AsyncStorage.setItem('donation', JSON.stringify([item, ...data]));
+          setData([item, ...data]);
           
           const _leftMoney = leftMoney - Number(price);
           setLeftMoney(_leftMoney);
@@ -65,7 +66,7 @@ function Donation({ navigation }) {
 
   return (
     <BaseScreen
-      screenName={menuItem[4].title}
+      screenName={menuItem[3].title}
       navigation={navigation}
       openAdd={openAdd}
       title={title}

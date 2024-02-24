@@ -1,0 +1,38 @@
+{
+    "language": "Turkish",
+    "screens": {
+        "home": {
+            "title": "Paranın",
+            "subTitle": "GİZEMİ"
+        },
+        "base": {
+            "title": "Başlık",
+            "price": "Fiyat",
+            "add": "Ekle"
+        },
+        "goal": {
+            "goal": "Hedef"
+        },
+        "login": {
+            "title": "S'identifier",
+            "text": {
+                "login": "connexion",
+                "emailAddress": "Adresse e-mail",
+                "password": "mot de passe",
+                "continue": "Continuer",
+                "createAccount": "Créer un compte",
+                "forgotPassword": "Mot de passe oublié?"
+            }
+        }
+    },
+    "menuItem": {
+        "expenses": "Harcamalar",
+        "revenue": "Gelir",
+        "goal": "Hedeflerim",
+        "donation": "İyiliklerim",
+        "info": "Nasıl Kullanırım? Ayarlar"
+    },
+    "components": {
+        "leftMoney": "Kalan Para"
+    }
+}

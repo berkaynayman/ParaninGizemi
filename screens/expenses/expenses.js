@@ -40,8 +40,8 @@ function Expenses({ navigation }) {
             id: uuid.v4()
           };
         
-          AsyncStorage.setItem('expenses', JSON.stringify([...data, item]));
-          data.push(item);
+          AsyncStorage.setItem('expenses', JSON.stringify([item, ...data]));
+          data.unshift(item);
           
           const _leftMoney = leftMoney - Number(price);
           setLeftMoney(_leftMoney);

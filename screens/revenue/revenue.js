@@ -39,8 +39,8 @@ function Revenue({ navigation }) {
             price: price,
             id: uuid.v4()
           };
-          AsyncStorage.setItem('revenue', JSON.stringify([...data, item]));
-          data.push(item);
+          AsyncStorage.setItem('revenue', JSON.stringify([item, ...data]));
+          data.unshift(item);
           
           const _leftMoney = leftMoney + Number(price);
           setLeftMoney(_leftMoney);

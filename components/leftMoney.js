@@ -1,13 +1,31 @@
 import { Text, View, StyleSheet } from "react-native"
+import { useTranslation } from 'react-i18next';
 import { color } from "../lib/lib";
+import { useEffect, useState } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LeftMoney = ({ total }) => {
+    const { t } = useTranslation();
+    const [currency, setCurrency] = useState("");
+
+    useEffect(() => {
+        const getCurrency = async () => {
+            try {
+                const currency = await AsyncStorage.getItem('currency');
+                setCurrency(currency);
+            } catch (error) {
+                console.log("error", error)
+            }
+        }
+        getCurrency();
+    }, []);
+
     return (
         <View
           style={styles.bottomView}
         >
-          <Text style={styles.text2}>Kalan Para</Text>
-          <Text style={styles.leftMoneyText}>{total} TL</Text>
+          <Text style={styles.text2}>{ t('components.leftMoney') }</Text>
+          <Text style={styles.leftMoneyText}>{total} {currency}</Text>
         </View>
     )
 }

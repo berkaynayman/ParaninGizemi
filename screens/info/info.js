@@ -10,6 +10,7 @@ import {
 import { color, infoMenu } from '../../lib/lib';
 import { menuItem } from '../../lib/lib';
 import ScreenTab from '../../components/screenTab';
+import Setting from '../../components/Setting';
 
 
 function Section({ item }) {
@@ -28,6 +29,8 @@ function Info({ navigation }) {
     <SafeAreaView style={styles.backgroundStyle}>
         <ScreenTab navigation={navigation} title={menuItem[4].title} />
         { infoMenu.map((item, index) => <Section key={index} item={item} /> )}
+
+        <Setting />
     </SafeAreaView>
   );
 }
@@ -41,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.white,
     margin: 20,
     borderRadius: 20,
-    padding: 16
+    padding: 12,
   },
   view2: {
     marginTop: 0
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     width: "auto",
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     textAlign: "left",
     fontFamily: "Montserrat-Bold",
     color: color.main,

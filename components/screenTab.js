@@ -1,9 +1,12 @@
 import { View, StyleSheet, Image, Text } from "react-native";
+import { useTranslation } from 'react-i18next';
 
 import LeftMenuIcon from "../image/leftMenuIcon.png";
 import { color } from "../lib/lib";
 
 const ScreenTab = ({ navigation, title }) => {
+  const { t } = useTranslation();
+
     return (
         <View style={styles.tabViewParent}>
           <View
@@ -15,7 +18,7 @@ const ScreenTab = ({ navigation, title }) => {
           <View
             style={styles.tabView}
           >
-            <Text style={styles.text}>{ title }</Text>
+            <Text style={styles.text}>{ t(`menuItem.` + title) }</Text>
           </View>
         </View>
     )
