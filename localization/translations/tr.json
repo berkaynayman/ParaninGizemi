@@ -12,18 +12,13 @@
         },
         "goal": {
             "goal": "Hedef"
-        },
-        "login": {
-            "title": "S'identifier",
-            "text": {
-                "login": "connexion",
-                "emailAddress": "Adresse e-mail",
-                "password": "mot de passe",
-                "continue": "Continuer",
-                "createAccount": "Créer un compte",
-                "forgotPassword": "Mot de passe oublié?"
-            }
         }
+    },
+    "infoMenu": {
+        "expensesDesc": "Gün içerisinde yaptığınız ödemeleri girebilirsiniz. Örnek; Market, yemek vb.",
+        "revenueDesc": "Bir gelir elde ettiğinizde girebilirsiniz. Örnek; Maaş, yatırım vb.",
+        "goalDesc": "Finansal hedefleriniz. Örnek; Araba almak, ev almak vb.",
+        "donationDesc": "Çevrenize maddi olarak yaptığınız iyilikler. Örnek; Kahve ısmarlamak vb."
     },
     "menuItem": {
         "expenses": "Harcamalar",

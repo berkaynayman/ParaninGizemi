@@ -6,6 +6,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 import { color, infoMenu } from '../../lib/lib';
 import { menuItem } from '../../lib/lib';
@@ -14,12 +15,14 @@ import Setting from '../../components/Setting';
 
 
 function Section({ item }) {
+  const { t, i18n } = useTranslation();
+
   return (
     <View
         style={[styles.view, styles.view2]}
     >  
-        <Text style={styles.title}>{ item.title }</Text>
-        <Text style={styles.text}>{ item.description }</Text>
+        <Text style={styles.title}>{ t('menuItem.' + item.title) }</Text>
+        <Text style={styles.text}>{ t('infoMenu.' + item.description) }</Text>
     </View>
   );
 }

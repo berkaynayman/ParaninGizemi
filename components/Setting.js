@@ -21,7 +21,6 @@ function LanguageItem({item}) {
 }
 
 function CurrencyItem({item}) {
-  const { t } = useTranslation(); //i18n instance
   const [currentCurrency, setCurrentCurrency] = useState('');
 
   useEffect(() => {
@@ -104,9 +103,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    fontFamily: "Montserrat-ExtraBold",
-    color: color.main,
-    fontWeight: "600"
+    fontFamily: "Montserrat-Medium",
+    color: color.main
   },
   activeText: {
     fontSize: 16,

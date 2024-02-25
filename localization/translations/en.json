@@ -2,27 +2,32 @@
     "language": "English",
     "screens": {
         "home": {
-            "title": "Secret of",
-            "subTitle": "Money"
+            "title": "SECRET OF",
+            "subTitle": "MONEY"
         },
-        "intro": {
-            "title": "Intro Screen",
-            "text": {
-                "introText": "This is the intro text in english",
-                "login": "Login",
-                "signup": "Sign Up"
-            }
+        "base": {
+            "title": "Title",
+            "price": "Price",
+            "add": "Add"
         },
-        "login": {
-            "title": "Sign in",
-            "text": {
-                "login": "login",
-                "emailAddress": "Email address",
-                "password": "password",
-                "continue": "Continue",
-                "createAccount": "Create an Account",
-                "forgotPassword": "Forgotten password?"
-            }
+        "goal": {
+            "goal": "Goal"
         }
+    },
+    "infoMenu": {
+        "expensesDesc": "You can enter the payments you made during the day. Example; Grocery, food, etc.",
+        "revenueDesc": "You can enter when you receive an income. Example; salary, investment etc.",
+        "goalDesc": "Your financial goals. For example; buying a car, buying a house, etc.",
+        "donationDesc": "Favors you do to your environment financially. Example; Buying coffee, etc."
+    },
+    "menuItem": {
+        "expenses": "Expenses",
+        "revenue": "Revenue",
+        "goal": "Goal",
+        "donation": "Donation",
+        "info": "How I can use? Setting"
+    },
+    "components": {
+        "leftMoney": "Left Money"
     }
 }
