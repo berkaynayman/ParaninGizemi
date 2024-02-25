@@ -1,6 +1,7 @@
 import { Text, View, StyleSheet } from "react-native"
+import { NumericFormat } from 'react-number-format';
 import { useTranslation } from 'react-i18next';
-import { color } from "../lib/lib";
+import { color, currencyFormat } from "../lib/lib";
 import { useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -25,7 +26,10 @@ const LeftMoney = ({ total }) => {
           style={styles.bottomView}
         >
           <Text style={styles.text2}>{ t('components.leftMoney') }</Text>
-          <Text style={styles.leftMoneyText}>{total} {currency}</Text>
+        
+          <Text style={styles.leftMoneyText}>
+            { currencyFormat(currency, total) }
+          </Text>
         </View>
     )
 }

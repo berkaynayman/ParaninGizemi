@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import removeIcon from "../image/removeIcon.png";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { color } from "../lib/lib";
+import { color, currencyFormat } from "../lib/lib";
 import { useEffect, useState } from "react";
 
 function Section({item, removeItem}) {
@@ -29,7 +29,7 @@ function Section({item, removeItem}) {
           { item.price && (
             <Text
                 style={styles.sectionTitle}>
-                { item.price } {currency}
+                { currencyFormat(currency, Number(item.price)) }
             </Text>
           )}
         </View>
