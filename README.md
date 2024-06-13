@@ -1,3 +1,8 @@
+
+![PHOTO-2024-06-13-22-35-35](https://github.com/berkaynayman/ParaninGizemi/assets/62603509/229dde91-1116-43f9-9073-d633db359f93)
+
+![PHOTO-2024-06-13-22-35-35](https://github.com/berkaynayman/ParaninGizemi/assets/62603509/9eec1566-75c2-4872-a6fc-06198b46303c)
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
